@@ -1,5 +1,6 @@
-package io.github.medakoro0321.init;
+package io.github.medakoro0321.items;
 
+import io.github.medakoro0321.TechnifterPartners;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
@@ -10,11 +11,9 @@ import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
-import static io.github.medakoro0321.TechnifterPartners.MODID;
-
 public class sword_beast {
     // DeferredRegisterを追加
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(net.minecraft.core.registries.Registries.ITEM, MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(net.minecraft.core.registries.Registries.ITEM, TechnifterPartners.MODID);
 
     public static final Tier BEAST_TIER = new SimpleTier(
             // このツールが破壊できないブロックを決定するタグ。詳細は以下を参照。

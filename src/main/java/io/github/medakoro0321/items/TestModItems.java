@@ -1,8 +1,7 @@
-package io.github.medakoro0321.init;
+package io.github.medakoro0321.items;
 
 import io.github.medakoro0321.TechnifterPartners;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

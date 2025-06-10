@@ -1,7 +1,11 @@
 package io.github.medakoro0321;
 
-import io.github.medakoro0321.init.TestModItems;
-import io.github.medakoro0321.init.sword_beast;
+//アイテム、ブロック追加のImports
+
+import io.github.medakoro0321.items.sword_beast;
+import io.github.medakoro0321.blocks.ExampleBlock;
+
+//以下自動生成
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -11,14 +15,10 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -31,10 +31,12 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import static io.github.medakoro0321.blocks.ExampleBlock.*;
+import static io.github.medakoro0321.items.TestModItems.ITEMS;
 
 // この値はMETA-INF/neoforge.mods.tomlファイルのエントリと一致する必要があります
 @Mod(TechnifterPartners.MODID)
@@ -44,17 +46,10 @@ public class TechnifterPartners
     public static final String MODID = "technifter_partners";
     // slf4jロガーを直接参照します
     private static final Logger LOGGER = LogUtils.getLogger();
-    // "technifter_partners"の名前空間で登録されるブロックを保持するための遅延登録を作成します
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-    // "technifter_partners"の名前空間で登録されるアイテムを保持するための遅延登録を作成します
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     // "technifter_partners"の名前空間で登録されるCreativeModeTabsを保持するための遅延登録を作成します
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    // 名前空間とパスを組み合わせて、ID "technifter_partners:example_block"を持つ新しいブロックを作成します
-    public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
-    // 名前空間とパスを組み合わせて、ID "technifter_partners:example_block"を持つ新しいBlockItemを作成します
-    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+
 
     // ID "technifter_partners:example_id"、栄養1、満腹度2の新しい食べ物アイテムを作成します
     public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
@@ -77,11 +72,11 @@ public class TechnifterPartners
         modEventBus.addListener(this::commonSetup);
 
         // ブロックが登録されるように、遅延登録をmodイベントバスに登録します
-        BLOCKS.register(modEventBus);
+        ExampleBlock.BLOCKS.register(modEventBus);
         // アイテムが登録されるように、遅延登録をmodイベントバスに登録します
         ITEMS.register(modEventBus);
-        TestModItems.ITEMS.register(modEventBus);
         sword_beast.ITEMS.register(modEventBus);
+        ExampleBlock.ITEMS.register(modEventBus);
         // タブが登録されるように、遅延登録をmodイベントバスに登録します
         CREATIVE_MODE_TABS.register(modEventBus);
 
