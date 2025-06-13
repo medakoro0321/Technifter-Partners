@@ -2,6 +2,7 @@ package io.github.medakoro0321;
 
 //アイテム、ブロック追加のImports
 
+import io.github.medakoro0321.blocks.TechnifterWorkbench;
 import io.github.medakoro0321.items.sword_beast;
 import io.github.medakoro0321.blocks.ExampleBlock;
 
@@ -71,12 +72,22 @@ public class TechnifterPartners
         // modloadingのcommonSetupメソッドを登録します
         modEventBus.addListener(this::commonSetup);
 
-        // ブロックが登録されるように、遅延登録をmodイベントバスに登録します
-        ExampleBlock.BLOCKS.register(modEventBus);
-        // アイテムが登録されるように、遅延登録をmodイベントバスに登録します
+        //todo:**できるなら**ItemsとかにEventBusをまとめておきたい
+        //Modイベントバスに登録
+
+
+        //ExampleBlock登録
+        {
+            ExampleBlock.ITEMS.register(modEventBus);
+            ExampleBlock.BLOCKS.register(modEventBus);
+        }
+        //TechnifterWorkbench登録
+        {
+            TechnifterWorkbench.BLOCKS.register(modEventBus);
+            TechnifterWorkbench.ITEMS.register(modEventBus);
+        }
+        //todo:ITEMS.registerを削除してファイルを移動
         ITEMS.register(modEventBus);
-        sword_beast.ITEMS.register(modEventBus);
-        ExampleBlock.ITEMS.register(modEventBus);
         // タブが登録されるように、遅延登録をmodイベントバスに登録します
         CREATIVE_MODE_TABS.register(modEventBus);
 

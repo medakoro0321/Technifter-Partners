@@ -19,4 +19,6 @@ public class ExampleBlock {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
     // 名前空間とパスを組み合わせて、ID "technifter_partners:example_block"を持つ新しいBlockItemを作成します
     public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+
+
 }
