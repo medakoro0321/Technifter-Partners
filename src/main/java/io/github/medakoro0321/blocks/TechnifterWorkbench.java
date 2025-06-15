@@ -29,39 +29,9 @@ public class TechnifterWorkbench {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TechnifterPartners.MODID);
 
     // 名前空間とパスを組み合わせて、ID "technifter_partners:technifter_workbench"を持つ新しいブロックを作成します
-    public static final DeferredBlock<Block> TECHNIFTER_WORKBENCH = BLOCKS.register("technifter_workbench",
-            () -> new TechnifterWorkbenchBlock(BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.WOOD)
-                    .strength(2.5F)
-                    .sound(net.minecraft.world.level.block.SoundType.WOOD)));
+    public static final DeferredBlock<Block> TECHNIFTER_WORKBENCH = BLOCKS.registerSimpleBlock("technifter_workbench", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
 
     // 名前空間とパスを組み合わせて、ID "technifter_partners:technifter_workbench"を持つ新しいBlockItemを作成します
     public static final DeferredItem<BlockItem> TECHNIFTER_WORKBENCH_ITEM = ITEMS.registerSimpleBlockItem("technifter_workbench", TECHNIFTER_WORKBENCH);
 
-    // 作業台ブロックの実装クラス
-    public static class TechnifterWorkbenchBlock extends Block {
-
-        private static final Component CONTAINER_TITLE = Component.translatable("container.technifter_workbench");
-
-        public TechnifterWorkbenchBlock(BlockBehaviour.Properties properties) {
-            super(properties);
-        }
-
-        public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-            if (level.isClientSide) {
-                return InteractionResult.SUCCESS;
-            } else {
-                // プレイヤーにクラフティングメニューを開く
-                player.openMenu(state.getMenuProvider(level, pos));
-                return InteractionResult.CONSUME;
-            }
-        }
-
-        //@Override
-        public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
-            return new SimpleMenuProvider((id, inventory, player) -> {
-                return new CraftingMenu(id, inventory, ContainerLevelAccess.create(level, pos));
-            }, CONTAINER_TITLE);
-        }
-    }
 }
